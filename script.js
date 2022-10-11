@@ -40,22 +40,67 @@ function populateBoard(size){
 
         let square = document.createElement("div");
         square.classList.add(`${i}`); //for me to see the nth square 
-        square.addEventListener('mouseover', ()=> {
-            square.style.backgroundColor='red';
-        })
-        square.style.backgroundColor= "blue" ;
+        // square.addEventListener('mouseover', ()=> {
+        //     square.style.backgroundColor='red';
+        // })
+        square.addEventListener('mouseover', colourSquare);
+        square.style.backgroundColor= "lightgreen" ;
         board.insertAdjacentElement("beforeend", square);   
     };
 };
 
-populateBoard(32);
+let click =true;
+
+document.querySelector('body').addEventListener('click', e =>{
+   if (e.target.tagName != 'BUTTON'){
+    click = !click ;
+    if (click){
+    document.querySelector(".mode").textContent= "Colouring mode";
+    } else {
+        document.querySelector(".mode").textContent= "non-Colouring mode";
+    }
+   }
+});
+
+function colourSquare(){
+   if (click){
+    if (colour === 'random'){
+        return  this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+      } else {
+          this.style.backgroundColor=colour; 
+      }
+   }
+}
+
+populateBoard(16);
 
 function changeSize (input) {
     if (input >= 2 && input <= 100){
         populateBoard(input);
         
     }else {
-        console.log('too many squares');
+        if(input >100){
+        alert('too many squares');
+        } else{
+            alert('too little squares!')
+        }
+
     }
     
+}
+
+        // let blackbtn = document.querySelector(".blackbtn");
+
+        // blackbtn.addEventListener('click', e => {
+        //     square.style.backgroundColor ='black';
+        // })
+    let colour='black';
+    function changeColour(choice){
+            colour = choice ; 
+    }
+
+function reset(){
+    let board = document.querySelector(".board");
+    let squares = board.querySelectorAll("div");
+    squares.forEach((div) => div.style.backgroundColor='lightgreen');
 }
