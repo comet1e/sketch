@@ -11,15 +11,16 @@
 <body>
     
     <h1 class="title"> Welcome to Comet's SketchPad</h1>
+    <p class="mode"> </p>
     
         <div class="grid-container" id="main"> 
             <div class="board"> </div>
         </div>
         <div class="buttons">
-            <button>black</button>
-            <button>random</button>
-            <button>eraser</button>
-            <button>reset</button>
+            <button onclick="changeColour('black')" >black</button>
+            <button onclick="changeColour('random')" >random</button>
+            <button onclick="changeColour('white')">eraser</button>
+            <button onclick="reset()">reset</button>
         </div>
         <div>
             <input type="text" 
